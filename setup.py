@@ -49,14 +49,13 @@ setup(
 		'pyperclip',
 	],
 	
-	
 	classifiers=[
 		"Programming Language :: Python :: 3.8",
 		"Operating System :: OS Independent",
 	],
 	entry_points={
 		'console_scripts': [
-			'evilrdp = evilrdp.evilrdp:main',
+			'evilrdp = evilrdp.__main__:main',
 		],
 
 	}
