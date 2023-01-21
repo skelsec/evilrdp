@@ -1,4 +1,5 @@
 import os
+import sys
 import traceback
 import datetime
 import asyncio
@@ -153,12 +154,22 @@ class EVILRDPConsole(aiocmd.PromptToolkitCmd):
 		self.pscmd_channelname = channelname
 		await self.do_pscmdchannel(self)
 
-	async def do_startpscmd(self, channelname = 'PSCMD'):
+	async def do_startpscmd(self, channelname = 'PSCMD', scriptfile = 'serverscript.ps1'):
 		"""Starts a PSCMD channel on the remote end"""
+		if scriptfile is None:
+			scriptfile = 'serverscript.ps1'
 		if channelname not in self.rdpconn.get_vchannels():
 			await self.rdpconn.add_vchannel(channelname, PSCMDChannel(channelname))
-		basedir = os.path.dirname(os.path.abspath(__file__))
-		scriptfile = os.path.join(basedir, 'vchannels', 'pscmd', 'serverscript.ps1')
+		try:
+			if os.path.exists(scriptfile) is False:
+				if hasattr(sys, '_MEIPASS') is True:
+					scriptfile = os.path.join(sys._MEIPASS, scriptfile)
+			if os.path.exists(scriptfile) is False:
+				basedir = os.path.dirname(os.path.abspath(__file__))
+				scriptfile = os.path.join(basedir, 'vchannels', 'pscmd', 'serverscript.ps1')
+		except:
+			print('%s could not be found!' % scriptfile)
+			return
 		await self.do_powershell()
 		await asyncio.sleep(0)
 		await self.do_clipboardsetfile(scriptfile)
@@ -178,7 +189,6 @@ class EVILRDPConsole(aiocmd.PromptToolkitCmd):
 				print('Channel is defined, but is not active. Did you execute the client code on the server?')
 				return
 			response = await vchannel.sendrcv_pscmd(cmd)
-			print(repr(response))
 			for line in response.split('\n'):
 				print(line.strip())
 

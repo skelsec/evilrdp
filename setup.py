@@ -12,14 +12,6 @@ if mo:
 else:
     raise RuntimeError("Unable to find version string in %s." % (VERSIONFILE,))
 
-install_requires = []
-if platform.system().lower() == 'windows':
-	install_requires.append('pyqt5==5.12.3')
-	install_requires.append('pyqt5-sip==12.7.0')
-else:
-	install_requires.append('pyqt5')
-	install_requires.append('pyqt5-sip')
-
 setup(
 	# Application name:
 	name="evilrdp",
@@ -50,11 +42,12 @@ setup(
 	python_requires='>=3.7',
 
 	install_requires=[
+		'prompt-toolkit',
 		'aardwolf>=0.2.5',
 		'pyqt5',
 		'pyqt5-sip',
 		'pyperclip',
-	] + install_requires,
+	],
 	
 	
 	classifiers=[
