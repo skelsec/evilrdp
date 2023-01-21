@@ -2,7 +2,7 @@
 
 :triangular_flag_on_post: This is the public repository of aardwolf, for latest version and updates please consider supporting us through https://porchetta.industries/
 
-# EVILRDP - More control
+# EVILRDP - More control over RDP
 Th evil twin of [`aardwolfgui`](https://github.com/skelsec/aardwolfgui) using the [`aardwolf`](https://github.com/skelsec/aardwolf) RDP client library that gives you extended control over the target and additional scripting capabilities from the command line.
 
 ## :triangular_flag_on_post: Sponsors
@@ -35,7 +35,7 @@ There will be two groups of commands available to you, as follows:
   - doubleclick
   - type
   - typefile
-  - return/do_enter
+  - return/enter
   - invokerun
   - clipboardset
   - clipboardsetfile
@@ -44,11 +44,14 @@ There will be two groups of commands available to you, as follows:
   - screenshot
 - Commands which only work when the `PSCMD` channel is established
   - pscmdchannel - Changes the `PSCMD` channel name from the default. Use this when you changed the channelname in agent script file
-  - startpscmd - This tries to automatically start the remote agent which allows further commands to be used
+  - **startpscmd - This tries to automatically start the remote agent which allows further commands to be used**
   - pscmd - Executes a powershell command
   - getfile - Downloads remote file
   - shell - Executes a shell command
   - socksproxy - Starts a SOCKS4a/5 proxy
+
+As it is with all things RDP, automatic command execution doesn't always work mostly because of timing issues therefore the `startpscmd` might need to be used 2 times, OR you might need to start the `PSCMD` channel manually.  
+When `PSCMD` channel starts, you'll get a notification in your client shell.
 
 # URL format
 As usual the scripts take the target/scredentials in URL format. Below some examples
