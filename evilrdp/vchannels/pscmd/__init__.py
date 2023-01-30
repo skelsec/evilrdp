@@ -213,5 +213,9 @@ class PSCMDChannel(VirtualChannelBase):
 				await self.channel_data_out(msg.to_bytes())
 
 	async def socksproxy(self, listen_ip, listen_port):
-		self.__socksserver = await asyncio.start_server(self.__handle_tcp_client, listen_ip, listen_port)
-		print('SOCKS proxy started on %s:%s' % (listen_ip, listen_port))
+		try:
+			self.__socksserver = await asyncio.start_server(self.__handle_tcp_client, listen_ip, listen_port)
+			print('SOCKS proxy started on %s:%s' % (listen_ip, listen_port))
+			return True, None
+		except Exception as e:
+			return None, e
