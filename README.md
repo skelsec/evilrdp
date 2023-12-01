@@ -1,12 +1,11 @@
 ![Supported Python versions](https://img.shields.io/badge/python-3.7+-blue.svg) [![Twitter](https://img.shields.io/twitter/follow/skelsec?label=skelsec&style=social)](https://twitter.com/intent/follow?screen_name=skelsec)
 
+## :triangular_flag_on_post: Sponsors
+
+If you like this project, consider sponsoring it on GitHub! [Sponsors](https://github.com/sponsors/skelsec/)
 
 # EVILRDP - More control over RDP
 Th evil twin of [`aardwolfgui`](https://github.com/skelsec/aardwolfgui) using the [`aardwolf`](https://github.com/skelsec/aardwolf) RDP client library that gives you extended control over the target and additional scripting capabilities from the command line.
-
-## :triangular_flag_on_post: Sponsors
-
-If you want to sponsor this project, you can do it on GitHub now!
 
 # Features
  - Control mouse and keyboard in an automated way from command line
