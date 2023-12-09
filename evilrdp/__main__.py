@@ -36,7 +36,7 @@ def main():
 	iosettings = RDPIOSettings()
 	iosettings.video_width = width
 	iosettings.video_height = height
-	iosettings.video_out_format = VIDEO_FORMAT.QT5
+	iosettings.video_out_format = VIDEO_FORMAT.PIL
 	iosettings.client_keyboard = args.keyboard
 
 	#from evilrdp.vchannels.pscmd import PSCMDChannel

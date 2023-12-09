@@ -18,6 +18,8 @@ from aardwolf.commons.queuedata.constants import MOUSEBUTTON
 from aardwolf.commons.target import RDPConnectionDialect
 
 from evilrdp.consolehelper import EVILRDPConsole
+from PIL.ImageQt import ImageQt
+
 
 from PyQt5.QtWidgets import QApplication, QMainWindow, qApp, QLabel
 from PyQt5.QtCore import QObject, pyqtSignal, pyqtSlot, QThread, Qt
@@ -302,11 +304,12 @@ class EvilRDPGUI(QMainWindow):
 		self.close()
 	
 	def updateImage(self, event):
+		rect = ImageQt(event.image)
 		if event.width == self.settings.iosettings.video_width and event.height == self.settings.iosettings.video_height:
-			self._buffer = event.image
+			self._buffer = rect
 		else:
 			with QPainter(self._buffer) as qp:
-				qp.drawImage(event.x, event.y, event.image, 0, 0, event.width, event.height)
+				qp.drawImage(event.x, event.y, rect, 0, 0, event.width, event.height)
 		
 		pixmap01 = QPixmap.fromImage(self._buffer)
 		pixmap_image = QPixmap(pixmap01)
